@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pupusería Los Cayitos</title>
+
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Yeseva+One&display=swap" rel="stylesheet">
+
+  <style>
+    /* Aquí va todo tu CSS (igual que antes) */
+    body {
+      margin: 0;
+      font-family: 'Baloo 2', cursive;
+      background: url('https://www.transparenttextures.com/patterns/cream-dust.png');
+      color: #4a2c2a;
+    }
+    header {
+      background: linear-gradient(135deg, #f29c6b, #f47b42);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 4px #fff3e0);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .logo:hover {
+      transform: rotate(-5deg) scale(1.1);
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      font-family: 'Yeseva One', cursive;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #ffdab9;
+      padding: 0.75rem 0;
+      box-shadow: inset 0 -1px 3px rgba(0,0,0,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: #4a2c2a;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #b34b00;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      font-family: 'Yeseva One', cursive;
+      color: #b34b00;
+      text-align: center;
+      font-size: 2rem;
+    }
+    .menu-item {
+      background-color: #fff6eb;
+      border-left: 5px solid #f29c6b;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .menu-item h3 {
+      margin: 0 0 0.5rem 0;
+    }
+    .btn-pedir {
+      background: linear-gradient(45deg, #f76b1c, #fca12f);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      display: block;
+      margin: 2rem auto 0 auto;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+    .btn-pedir:hover {
+      background: #e95b10;
+      transform: scale(1.05);
+    }
+    /* Galería animada */
+    .gallery {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      text-align: center;
+      max-width: 320px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 0.8s forwards;
+      animation-delay: var(--delay);
+      cursor: default;
+    }
+    .gallery-item:nth-child(1) { --delay: 0.2s; }
+    .gallery-item:nth-child(2) { --delay: 0.4s; }
+    .gallery-item:nth-child(3) { --delay: 0.6s; }
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .gallery-item img:hover {
+      transform: scale(1.1) translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    .img-label {
+      margin-top: 0.5rem;
+      font-weight: 700;
+      color: #b34b00;
+      font-family: 'Yeseva One', cursive;
+      font-size: 1.2rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .gallery-item:hover .img-label {
+      color: #f76b1c;
+      transform: translateY(-5px);
+      text-shadow: 0 0 5px #f9b775;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Modal de imagen */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    #modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 15px;
+      box-shadow: 0 0 30px #ff8c00;
+      transition: transform 0.3s ease;
+    }
+    #modal img:hover {
+      transform: scale(1.05);
+    }
+    #modal .close-btn {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 2.5rem;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      background: rgba(0,0,0,0.5);
+      padding: 0 12px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+    #modal .close-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+    /* Contacto */
+    #contacto p a {
+      color: #b34b00;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    #contacto p a:hover {
+      color: #f76b1c;
+      text-shadow: 0 0 4px #f9b775;
+    }
+    footer {
+      background-color: #f29c6b;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      .logo {
+        width: 80px;
+        height: 80px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .gallery-item img {
+        height: auto;
+      }
+      section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo Pupusería Los Cayitos" class="logo" />
+    <div>
+      <h1>Pupusería Los Cayitos</h1>
+      <p>¡Sabor casero que te hace volver!</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#menu">Menú</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section id="menu">
+    <h2>Menú</h2>
+    <div class="menu-item">
+      <h3>Pupusas de Frijol con Queso</h3>
+      <p>3 por $1.00</p>
+    </div>
+    <div class="menu-item">
+      <h3>Pupusas Especiales (Queso, Revueltas, Chicharrón, Mora, Cuchinito)</h3>
+      <p>$0.50 cada una</p>
+    </div>
+    <div class="menu-item">
+      <h3>Refrescos, Café y Chocolate</h3>
+      <p>$0.50 - $0.75</p>
+    </div>
+    <button class="btn-pedir" onclick="hacerPedido()">Hacer pedido</button>
+  </section>
+
+  <section id="galeria">
+    <h2>Galería</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="pupusas.jpeg" alt="Pupusas calientes" />
+        <p class="img-label">Pupusas</p>
+      </div>
+      <div class="gallery-item">
+        <img src="local.jpeg" alt="Local de Los Cayitos" />
+        <p class="img-label">Local</p>
+      </div>
+      <div class="gallery-item">
+        <img src="bebidas.jpeg" alt="Bebidas típicas" />
+        <p class="img-label">Bebidas</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>Dirección: 13 Avenida Norte, Polígono 36, Casa #2, Santa Tecla</p>
+    <!-- Quité el primer teléfono y dejé solo el segundo -->
+    <p>WhatsApp: <a href="https://wa.me/50373907889" target="_blank">+503 7390 7889</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Pupusería Los Cayitos. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Modal para imagen ampliada -->
+  <div id="modal">
+    <span class="close-btn">&times;</span>
+    <img src="" alt="Imagen ampliada" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
