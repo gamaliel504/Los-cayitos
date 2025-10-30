@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Yeseva+One&display=swap" rel="stylesheet">
 
   <style>
-    /* Aquí va todo tu CSS (igual que antes) */
     body {
       margin: 0;
       font-family: 'Baloo 2', cursive;
@@ -98,7 +97,6 @@
       background: #e95b10;
       transform: scale(1.05);
     }
-    /* Galería animada */
     .gallery {
       display: flex;
       gap: 1.5rem;
@@ -150,7 +148,6 @@
         transform: translateY(0);
       }
     }
-    /* Modal de imagen */
     #modal {
       display: none;
       position: fixed;
@@ -188,7 +185,6 @@
     #modal .close-btn:hover {
       background: rgba(0,0,0,0.8);
     }
-    /* Contacto */
     #contacto p a {
       color: #b34b00;
       text-decoration: none;
@@ -207,7 +203,6 @@
       margin-top: 3rem;
       font-size: 0.9rem;
     }
-    /* Responsive */
     @media (max-width: 600px) {
       header {
         flex-direction: column;
@@ -286,8 +281,7 @@
   <section id="contacto">
     <h2>Contacto</h2>
     <p>Dirección: 13 Avenida Norte, Polígono 36, Casa #2, Santa Tecla</p>
-    <!-- Quité el primer teléfono y dejé solo el segundo -->
-    <p>WhatsApp: <a href="https://wa.me/61060034" target="_blank">+503 6106 0034</a></p>
+    <p>WhatsApp: <a href="https://wa.me/50361060034" target="_blank">+503 6106 0034</a></p>
   </section>
 
   <footer>
@@ -300,7 +294,11 @@
     <img src="" alt="Imagen ampliada" />
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Función del botón "Hacer pedido"
+    function hacerPedido() {
+      window.open("https://wa.me/50361060034?text=¡Hola!%20Quisiera%20hacer%20un%20pedido%20de%20pupusas.", "_blank");
+    }
+  </script>
 </body>
 </html>
-
